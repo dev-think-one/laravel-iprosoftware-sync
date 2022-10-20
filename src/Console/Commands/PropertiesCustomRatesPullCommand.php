@@ -10,6 +10,7 @@ class PropertiesCustomRatesPullCommand extends Command
 {
     protected $signature = 'iprosoftware-sync:properties-custom-rates:pull
      {--id= : Pull property custom rates by ipro id.}
+     {--queue= : Queue to dispatch job.}
     ';
 
     protected $description = 'Pull ipro properties custom rates';
@@ -17,13 +18,15 @@ class PropertiesCustomRatesPullCommand extends Command
     public function handle()
     {
         if ($id = $this->option('id')) {
-            PropertyCustomRatesPull::dispatch($id);
+            PropertyCustomRatesPull::dispatch($id)
+                ->onQueue($this->option('queue'));
         } else {
             Property::query()
                     ->chunk(100, function ($properties) {
                         /** @var Property $property */
                         foreach ($properties as $property) {
-                            PropertyCustomRatesPull::dispatch($property->getKey());
+                            PropertyCustomRatesPull::dispatch($property->getKey())
+                                ->onQueue($this->option('queue'));
                         }
                     });
         }

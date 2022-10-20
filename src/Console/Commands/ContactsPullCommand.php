@@ -10,6 +10,7 @@ class ContactsPullCommand extends Command
 {
     protected $signature = 'iprosoftware-sync:contacts:pull
      {--id= : Pull contact by ipro id.}
+     {--queue= : Queue to dispatch job.}
     ';
 
     protected $description = 'Pull ipro contacts';
@@ -17,9 +18,11 @@ class ContactsPullCommand extends Command
     public function handle()
     {
         if ($id = $this->option('id')) {
-            ContactPull::dispatch($id);
+            ContactPull::dispatch($id)
+                ->onQueue($this->option('queue'));
         } else {
-            ContactsPull::dispatch();
+            ContactsPull::dispatch()
+                ->onQueue($this->option('queue'));
         }
 
         return 0;

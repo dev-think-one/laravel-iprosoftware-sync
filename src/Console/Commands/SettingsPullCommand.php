@@ -12,18 +12,20 @@ use IproSync\Jobs\Settings\SourcesPull;
 
 class SettingsPullCommand extends Command
 {
-    protected $signature = 'iprosoftware-sync:settings:pull';
+    protected $signature = 'iprosoftware-sync:settings:pull
+     {--queue= : Queue to dispatch job.}
+     ';
 
     protected $description = 'Pull ipro settings';
 
     public function handle()
     {
-        AttributesPull::dispatch();
-        BookingRulesPull::dispatch();
-        BookingTagsPull::dispatch();
-        ContactTypesPull::dispatch();
-        LocationsPull::dispatch();
-        SourcesPull::dispatch();
+        AttributesPull::dispatch()->onQueue($this->option('queue'));
+        BookingRulesPull::dispatch()->onQueue($this->option('queue'));
+        BookingTagsPull::dispatch()->onQueue($this->option('queue'));
+        ContactTypesPull::dispatch()->onQueue($this->option('queue'));
+        LocationsPull::dispatch()->onQueue($this->option('queue'));
+        SourcesPull::dispatch()->onQueue($this->option('queue'));
 
         return 0;
     }

@@ -13,6 +13,7 @@ class BlockoutsPullCommand extends Command
      {--property_id= : Pull blockouts by ipro property id.}
      {--from= : Date from, format Y-m-d}
      {--to= : Date to, format Y-m-d}
+     {--queue= : Queue to dispatch job.}
     ';
 
     protected $description = 'Pull ipro blockouts';
@@ -27,13 +28,14 @@ class BlockoutsPullCommand extends Command
                 $this->option('property_id'),
                 $from,
                 $to,
-            );
+            )->onQueue($this->option('queue'));
         } else {
             Property::query()
                     ->chunk(100, function ($properties) use ($from, $to) {
                         /** @var Property $property */
                         foreach ($properties as $property) {
-                            BlockoutsPull::dispatch($property->getKey(), $from, $to);
+                            BlockoutsPull::dispatch($property->getKey(), $from, $to)
+                                ->onQueue($this->option('queue'));
                         }
                     });
         }

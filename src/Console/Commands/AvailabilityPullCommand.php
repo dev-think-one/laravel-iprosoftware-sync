@@ -11,6 +11,7 @@ class AvailabilityPullCommand extends Command
     protected $signature = 'iprosoftware-sync:availability:pull
      {--property_id= : Pull availability by ipro property id.}
      {--months=60 : the number of months of data to be returned, works only for day_availability.}
+     {--queue= : Queue to dispatch job.}
     ';
 
     protected $description = 'Pull ipro availability';
@@ -28,7 +29,7 @@ class AvailabilityPullCommand extends Command
                 $this->option('property_id'),
                 [],
                 array_filter(['months' => $months])
-            );
+            )->onQueue($this->option('queue'));
         } else {
             Property::query()
                     ->chunk(100, function ($properties) use ($months) {
@@ -38,7 +39,7 @@ class AvailabilityPullCommand extends Command
                                 $property->getKey(),
                                 [],
                                 array_filter(['months' => $months])
-                            );
+                            )->onQueue($this->option('queue'));
                         }
                     });
         }

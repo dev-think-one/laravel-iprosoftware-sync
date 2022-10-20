@@ -10,6 +10,7 @@ class PropertiesPullCommand extends Command
 {
     protected $signature = 'iprosoftware-sync:properties:pull
      {--id= : Pull property by ipro id.}
+     {--queue= : Queue to dispatch job.}
     ';
 
     protected $description = 'Pull ipro properties';
@@ -17,9 +18,11 @@ class PropertiesPullCommand extends Command
     public function handle()
     {
         if ($id = $this->option('id')) {
-            PropertyPull::dispatch($id);
+            PropertyPull::dispatch($id)
+                ->onQueue($this->option('queue'));
         } else {
-            PropertiesPull::dispatch();
+            PropertiesPull::dispatch()
+                ->onQueue($this->option('queue'));
         }
 
         return 0;
