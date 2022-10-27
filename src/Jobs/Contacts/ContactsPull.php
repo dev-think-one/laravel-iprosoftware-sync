@@ -19,7 +19,6 @@ class ContactsPull implements ShouldQueue
 
     public function __construct(?PullPagination $pagination = null, array $requestParams = [])
     {
-        // TODO: Ipro pagination not works and return all contacts. We need update all.
         $this->pagination    = $pagination ?? PullPagination::allPages();
         $this->requestParams = $requestParams;
     }
@@ -32,8 +31,13 @@ class ContactsPull implements ShouldQueue
         ])->onlySuccessful();
 
         $items = $response->json('Items');
+        $total = $response->json('TotalHits');
         foreach ($items as $item) {
             ContactPull::createOrUpdateContact($item);
+        }
+
+        if ($nextPagination = $this->pagination->nextPagination($total)) {
+            static::dispatch($nextPagination, $this->requestParams);
         }
     }
 }
