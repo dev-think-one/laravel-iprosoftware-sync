@@ -43,7 +43,8 @@ class BookingsPull implements ShouldQueue
         }
 
         if ($nextPagination = $this->pagination->nextPagination($total)) {
-            static::dispatch($nextPagination, $this->requestParams);
+            static::dispatch($nextPagination, $this->requestParams)
+                ->onQueue($this->queue);
         }
     }
 
