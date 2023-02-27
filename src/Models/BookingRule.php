@@ -19,7 +19,7 @@ class BookingRule extends Model
         'rules' => \JsonFieldCast\Casts\SimpleJsonField::class,
     ];
 
-    public function getTable()
+    public function getTable(): string
     {
         return config('iprosoftware-sync.tables.booking_rules');
     }

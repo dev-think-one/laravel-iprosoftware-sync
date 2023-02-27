@@ -16,7 +16,7 @@ class Location extends Model
         'children' => 'array',
     ];
 
-    public function getTable()
+    public function getTable(): string
     {
         return config('iprosoftware-sync.tables.locations');
     }

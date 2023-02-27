@@ -12,7 +12,7 @@ class ContactType extends Model
 
     protected $guarded = [];
 
-    public function getTable()
+    public function getTable(): string
     {
         return config('iprosoftware-sync.tables.contact_types');
     }

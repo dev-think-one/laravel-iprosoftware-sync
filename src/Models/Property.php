@@ -31,7 +31,7 @@ class Property extends Model
         'discounts'           => 'array',
     ];
 
-    public function getTable()
+    public function getTable(): string
     {
         return config('iprosoftware-sync.tables.properties');
     }

@@ -17,7 +17,7 @@ class Blockout extends Model
         'check_out' => 'datetime:Y-m-d',
     ];
 
-    public function getTable()
+    public function getTable(): string
     {
         return config('iprosoftware-sync.tables.blockouts');
     }

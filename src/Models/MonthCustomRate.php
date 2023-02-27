@@ -25,7 +25,7 @@ class MonthCustomRate extends Model
         'group_size'      => \JsonFieldCast\Casts\ArrayOfJsonObjectsField::class,
     ];
 
-    public function getTable()
+    public function getTable(): string
     {
         return config('iprosoftware-sync.tables.custom_rates');
     }
