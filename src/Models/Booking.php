@@ -20,7 +20,7 @@ class Booking extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'order_time'             => 'date',
+        'order_time'             => 'datetime:Y-m-d',
         'modified_time'          => 'datetime',
         'check_in'               => 'datetime:Y-m-d',
         'check_out'              => 'datetime:Y-m-d',
