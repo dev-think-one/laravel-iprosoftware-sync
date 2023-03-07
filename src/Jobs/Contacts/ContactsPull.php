@@ -36,9 +36,18 @@ class ContactsPull implements ShouldQueue
             ContactPull::createOrUpdateContact($item);
         }
 
-        if ($nextPagination = $this->pagination->nextPagination($total)) {
+        /*if ($nextPagination = $this->pagination->nextPagination($total)) {
             static::dispatch($nextPagination, $this->requestParams)
-                  ->onQueue($this->queue);
+                ->onQueue($this->queue);
+        }*/
+        // TODO: WARNING for now api for this endpoint returns incorrect value for TotalHits, so temporary
+        //  we need to use ad-hoc to load next page not based on TotalHits but stops only when empty list returned
+        if (
+            count($items)
+        ) {
+            $nextPagination = PullPagination::pages($this->pagination->getStartPage() + 1, $this->pagination->getEndPage(), $this->pagination->getPerPage());
+            static::dispatch($nextPagination, $this->requestParams)
+                ->onQueue($this->queue);
         }
     }
 }
