@@ -30,7 +30,8 @@
     },
     "autoload": {
         "psr-4": {
-            "IproSync\\": "src"
+            "IproSync\\": "src",
+            "IproSync\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {

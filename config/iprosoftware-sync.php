@@ -22,4 +22,8 @@ return [
         'decimal_separator'   => '.',
         'thousands_separator' => ',',
     ],
+
+    'date_format' => [
+        'display'            => 'd/m/y',
+    ],
 ];

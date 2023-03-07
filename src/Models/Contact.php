@@ -3,6 +3,7 @@
 namespace IproSync\Models;
 
 use Angecode\LaravelIproSoft\IproSoftwareFacade;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,9 +23,9 @@ class Contact extends Model
         return config('iprosoftware-sync.tables.contacts');
     }
 
-    public function name(): \Illuminate\Database\Eloquent\Casts\Attribute
+    public function name(): Attribute
     {
-        return \Illuminate\Database\Eloquent\Casts\Attribute::get(fn () => implode(' ', array_filter([
+        return Attribute::get(fn () => implode(' ', array_filter([
             $this->title,
             $this->first_name,
             $this->last_name,

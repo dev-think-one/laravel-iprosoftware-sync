@@ -1,22 +1,22 @@
 <?php
 
 return [
-    'hide' => "",
-    'no_price' => "n/a",
-    'previous_week' => "p/w",
+    'hide'          => '',
+    'no_price'      => 'n/a',
+    'previous_week' => 'p/w',
 
     'hints' => [
-        'hide' => "",
-        'no_price' => "Not available",
-        'previous_week' => "Previous week",
-        'price' => "",
+        'hide'          => '',
+        'no_price'      => 'Not available',
+        'previous_week' => 'Previous week',
+        'price'         => '',
     ],
 
     'additional' => [
-        'from' => "From :price",
+        'from'  => 'From :price',
         'offer' => [
-            '*' => ':price*',
-            '**' => ':price**',
+            '*'   => ':price*',
+            '**'  => ':price**',
             '***' => ':price***',
         ],
     ],
