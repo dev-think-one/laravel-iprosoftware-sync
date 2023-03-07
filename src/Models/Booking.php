@@ -59,6 +59,11 @@ class Booking extends Model
         return $this->belongsTo(Property::class, 'property_id', 'id');
     }
 
+    public function contact(): BelongsTo
+    {
+        return $this->belongsTo(Contact::class, 'contact_id', 'id');
+    }
+
     public function scopeActive(Builder $query)
     {
         $query->where('booking_status_id', 3);

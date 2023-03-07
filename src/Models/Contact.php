@@ -101,4 +101,9 @@ class Contact extends Model
     {
         return $this->hasMany(Property::class, 'owner_contact_id', 'id');
     }
+
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class, 'contact_id', 'id');
+    }
 }
