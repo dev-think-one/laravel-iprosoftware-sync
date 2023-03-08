@@ -33,6 +33,9 @@ class Booking extends Model
         'payment_schedules'      => 'array',
         'payments'               => 'array',
         'bills'                  => 'array',
+        'renter_amount'          => 'float',
+        'holiday_extras'         => 'float',
+        'discount'               => 'float',
     ];
 
     public function getTable(): string
@@ -45,13 +48,17 @@ class Booking extends Model
         return BookingFactory::new();
     }
 
-
     public function name(): Attribute
     {
         return Attribute::get(fn () => implode(' - ', array_filter([
             $this->check_in?->format(config('iprosoftware-sync.date_format.display')),
             $this->check_out?->format(config('iprosoftware-sync.date_format.display')),
         ])) ?: '-');
+    }
+
+    public function renterRawTotal(): Attribute
+    {
+        return Attribute::get(fn () => round($this->renter_amount + $this->holiday_extras - $this->discount, 2));
     }
 
     public function property(): BelongsTo
