@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 use IproSync\Database\Factories\BookingFactory;
 use IproSync\Ipro\Price;
 
@@ -79,5 +80,27 @@ class Booking extends Model
     public function formattedPrice(string $attributeName): string
     {
         return Price::format((float)$this->$attributeName, $this->currency);
+    }
+
+    public function extractGuestNote(string $key, ?string $default = null, array $separators = [
+        ':',
+        ' - ',
+    ]): ?string
+    {
+        $key  = rtrim($key);
+        $keys = [];
+        foreach ($separators as $separator) {
+            $keys[] = $key . $separator;
+        }
+        foreach (preg_split("/((\r?\n)|(\r\n?))/", $this->guest_notes ?? '') as $note) {
+            $note = trim($note);
+            foreach ($keys as $formattedKey) {
+                if (Str::startsWith($note, $formattedKey)) {
+                    return trim(Str::after($note, $formattedKey));
+                }
+            }
+        }
+
+        return $default;
     }
 }

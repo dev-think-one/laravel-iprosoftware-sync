@@ -37,4 +37,32 @@ class BookingTest extends TestCase
         $this->assertEquals(12350.53, $booking->renter_raw_total);
         $this->assertEquals('$12,350.53', $booking->formattedPrice('renter_raw_total'));
     }
+
+    /** @test */
+    public function extract_guest_note()
+    {
+        /** @var Booking $booking */
+        $booking = Booking::factory()->create(['guest_notes' => null,]);
+
+        $this->assertNull($booking->extractGuestNote('Ages of children'));
+        $this->assertEquals('bar', $booking->extractGuestNote('Ages of children', 'bar'));
+
+        $booking = Booking::factory()->create(['guest_notes' => "Nature of stay: Family Holiday\nAges of children:  6, 2",]);
+
+        $this->assertEquals('Family Holiday', $booking->extractGuestNote('Nature of stay', 'bar'));
+        $this->assertEquals('Family Holiday', $booking->extractGuestNote('Nature of stay'));
+        $this->assertEquals('6, 2', $booking->extractGuestNote('Ages of children', 'bar'));
+
+        $booking = Booking::factory()->create(['guest_notes' => "Nature of stay - Family Holiday\nAges of children:  6, 2",]);
+
+        $this->assertEquals('Family Holiday', $booking->extractGuestNote('Nature of stay', 'bar'));
+        $this->assertEquals('Family Holiday', $booking->extractGuestNote('Nature of stay'));
+        $this->assertEquals('6, 2', $booking->extractGuestNote('Ages of children', 'bar'));
+
+        $booking = Booking::factory()->create(['guest_notes' => "Nature of stay% Family Holiday\nAges of children%  6, 2",]);
+
+        $this->assertEquals('Family Holiday', $booking->extractGuestNote('Nature of stay', 'bar', ['%']));
+        $this->assertEquals('Family Holiday', $booking->extractGuestNote('Nature of stay', separators: ['%']));
+        $this->assertEquals('6, 2', $booking->extractGuestNote('Ages of children', 'bar', ['%']));
+    }
 }
