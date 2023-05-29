@@ -15,7 +15,7 @@ class PropertiesPullCommand extends Command
 
     protected $description = 'Pull ipro properties';
 
-    public function handle()
+    public function handle(): int
     {
         if ($id = $this->option('id')) {
             PropertyPull::dispatch($id)

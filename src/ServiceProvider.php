@@ -25,6 +25,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 \IproSync\Console\Commands\AvailabilityPullCommand::class,
                 \IproSync\Console\Commands\BookingsPullCommand::class,
                 \IproSync\Console\Commands\BlockoutsPullCommand::class,
+                \IproSync\Console\Commands\RecentlyUpdatedBookingsBlockoutsPullCommand::class,
                 \IproSync\Console\Commands\IproPullDatabaseCommand::class,
             ]);
         }

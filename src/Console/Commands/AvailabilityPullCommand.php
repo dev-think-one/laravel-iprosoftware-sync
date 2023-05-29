@@ -16,7 +16,7 @@ class AvailabilityPullCommand extends Command
 
     protected $description = 'Pull ipro availability';
 
-    public function handle()
+    public function handle(): int
     {
         $months = (int) $this->option('months');
         if ($months < 0 || $months > 120) {

@@ -13,7 +13,7 @@ class IproPullDatabaseCommand extends Command
 
     protected $description = 'Pull ipro fully data';
 
-    public function handle()
+    public function handle(): int
     {
         $queue = $this->option('queue');
 

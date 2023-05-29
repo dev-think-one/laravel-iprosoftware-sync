@@ -18,7 +18,7 @@ class SettingsPullCommand extends Command
 
     protected $description = 'Pull ipro settings';
 
-    public function handle()
+    public function handle(): int
     {
         AttributesPull::dispatch()->onQueue($this->option('queue'));
         BookingRulesPull::dispatch()->onQueue($this->option('queue'));

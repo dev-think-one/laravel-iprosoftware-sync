@@ -17,13 +17,10 @@ class BookingsPullCommand extends Command
 
     protected $description = 'Pull ipro bookings';
 
-    public function handle()
+    public function handle(): int
     {
         if ($id = $this->option('id')) {
             BookingsPull::dispatch(null, ['bookingID' => $id])
-                        ->onQueue($this->option('queue'));
-        } elseif ($id = $this->option('property_id')) {
-            BookingsPull::dispatch(null, ['propertyids' => $id])
                         ->onQueue($this->option('queue'));
         } elseif ($id = $this->option('property_id')) {
             BookingsPull::dispatch(null, ['propertyids' => $id])

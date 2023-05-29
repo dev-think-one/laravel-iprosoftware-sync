@@ -18,7 +18,7 @@ class BlockoutsPullCommand extends Command
 
     protected $description = 'Pull ipro blockouts';
 
-    public function handle()
+    public function handle(): int
     {
         $from = $this->option('from') ? Carbon::createFromFormat('Y-m-d', $this->option('from')) : null;
         $to   = $this->option('to') ? Carbon::createFromFormat('Y-m-d', $this->option('to')) : null;

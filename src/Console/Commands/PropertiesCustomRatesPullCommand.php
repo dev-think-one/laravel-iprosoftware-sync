@@ -15,7 +15,7 @@ class PropertiesCustomRatesPullCommand extends Command
 
     protected $description = 'Pull ipro properties custom rates';
 
-    public function handle()
+    public function handle(): int
     {
         if ($id = $this->option('id')) {
             PropertyCustomRatesPull::dispatch($id)

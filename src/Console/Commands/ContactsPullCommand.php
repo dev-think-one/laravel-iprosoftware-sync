@@ -15,7 +15,7 @@ class ContactsPullCommand extends Command
 
     protected $description = 'Pull ipro contacts';
 
-    public function handle()
+    public function handle(): int
     {
         if ($id = $this->option('id')) {
             ContactPull::dispatch($id)
