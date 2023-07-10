@@ -1,6 +1,6 @@
 {
     "name": "yaroslawww/laravel-iprosoftware-sync",
-    "description": "Download ipro data yo your own database.",
+    "description": "Download ipro data to your own database.",
     "keywords": [
         "laravel",
         "ipro"
@@ -18,15 +18,15 @@
     "require": {
         "php": "^8.1",
         "illuminate/support": "^9.0|^10.0",
-        "yaroslawww/laravel-json-field-cast": "^2.2",
+        "think.studio/laravel-json-field-cast": "^2.2",
         "yaroslawww/laravel-iprosoftware-api": "^3.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.14",
-        "orchestra/testbench": "^8.0",
-        "phpunit/phpunit": "^10.0",
+        "friendsofphp/php-cs-fixer": "^3.20",
+        "orchestra/testbench": "^8.5",
+        "phpunit/phpunit": "^10.2",
         "psalm/plugin-laravel": "^2.8",
-        "vimeo/psalm": "^5.7"
+        "vimeo/psalm": "^5.13"
     },
     "autoload": {
         "psr-4": {
@@ -40,10 +40,10 @@
         }
     },
     "scripts": {
-        "test": "XDEBUG_MODE=coverage vendor/bin/phpunit --stop-on-failure",
+        "psalm": "vendor/bin/psalm",
+        "test": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
-        "psalm": "vendor/bin/psalm"
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "config": {
         "sort-packages": true
