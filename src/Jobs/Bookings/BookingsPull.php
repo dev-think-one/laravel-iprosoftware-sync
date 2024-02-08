@@ -2,7 +2,6 @@
 
 namespace IproSync\Jobs\Bookings;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,6 +12,7 @@ use Illuminate\Support\Str;
 use IproSync\Ipro\DateTime;
 use IproSync\Ipro\PullPagination;
 use IproSync\Models\Booking;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class BookingsPull implements ShouldQueue
 {

@@ -2,13 +2,13 @@
 
 namespace IproSync\Jobs\Properties;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use IproSync\Models\Property;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class PropertyPull implements ShouldQueue
 {

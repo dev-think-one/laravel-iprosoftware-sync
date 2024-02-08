@@ -2,13 +2,13 @@
 
 namespace IproSync\Jobs\Settings;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use IproSync\Models\BookingTag;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class BookingTagsPull implements ShouldQueue
 {

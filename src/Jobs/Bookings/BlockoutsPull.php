@@ -2,7 +2,6 @@
 
 namespace IproSync\Jobs\Bookings;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use IproSync\Models\Blockout;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class BlockoutsPull implements ShouldQueue
 {

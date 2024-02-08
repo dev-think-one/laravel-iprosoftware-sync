@@ -2,13 +2,13 @@
 
 namespace IproSync\Models;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use IproSync\Jobs\Contacts\ContactPull;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class Contact extends Model
 {

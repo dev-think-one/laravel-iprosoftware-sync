@@ -2,7 +2,6 @@
 
 namespace IproSync\Jobs\Properties;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use IproSync\Models\MonthCustomRate;
 use IproSync\Models\Property;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class PropertyCustomRatesPull implements ShouldQueue
 {

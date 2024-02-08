@@ -1,11 +1,11 @@
 {
-    "name": "yaroslawww/laravel-iprosoftware-sync",
+    "name": "think.studio/laravel-iprosoftware-sync",
     "description": "Download ipro data to your own database.",
     "keywords": [
         "laravel",
         "ipro"
     ],
-    "homepage": "https://github.com/yaroslawww/laravel-iprosoftware-sync",
+    "homepage": "https://github.com/dev-think-one/laravel-iprosoftware-sync",
     "license": "MIT",
     "authors": [
         {
@@ -17,16 +17,16 @@
     ],
     "require": {
         "php": "^8.1",
-        "illuminate/support": "^9.0|^10.0",
+        "illuminate/support": "^10.0|^11.0",
         "think.studio/laravel-json-field-cast": "^2.2",
-        "yaroslawww/laravel-iprosoftware-api": "^3.1"
+        "think.studio/laravel-iprosoftware-api": "^4.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.20",
-        "orchestra/testbench": "^8.5",
-        "phpunit/phpunit": "^10.2",
+        "friendsofphp/php-cs-fixer": "^3.49",
+        "orchestra/testbench": "^8.21",
+        "phpunit/phpunit": "^10.5",
         "psalm/plugin-laravel": "^2.8",
-        "vimeo/psalm": "^5.13"
+        "vimeo/psalm": "^5.21"
     },
     "autoload": {
         "psr-4": {

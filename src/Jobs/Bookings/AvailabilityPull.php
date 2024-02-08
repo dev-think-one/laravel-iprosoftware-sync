@@ -2,13 +2,13 @@
 
 namespace IproSync\Jobs\Bookings;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use IproSync\Models\Availability;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class AvailabilityPull implements ShouldQueue
 {

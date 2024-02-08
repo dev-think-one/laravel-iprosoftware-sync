@@ -2,13 +2,13 @@
 
 namespace IproSync\Jobs\Contacts;
 
-use Angecode\LaravelIproSoft\IproSoftwareFacade;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use IproSync\Models\Contact;
+use LaravelIproSoftwareApi\IproSoftwareFacade;
 
 class ContactPull implements ShouldQueue
 {
