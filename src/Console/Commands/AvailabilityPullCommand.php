@@ -27,7 +27,6 @@ class AvailabilityPullCommand extends Command
         if ($this->option('property_id')) {
             AvailabilityPull::dispatch(
                 $this->option('property_id'),
-                [],
                 array_filter(['months' => $months])
             )->onQueue($this->option('queue'));
         } else {
@@ -37,7 +36,6 @@ class AvailabilityPullCommand extends Command
                         foreach ($properties as $property) {
                             AvailabilityPull::dispatch(
                                 $property->getKey(),
-                                [],
                                 array_filter(['months' => $months])
                             )->onQueue($this->option('queue'));
                         }

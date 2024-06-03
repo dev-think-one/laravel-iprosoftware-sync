@@ -15,15 +15,19 @@ class PropertyPull implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected int $iproPropertyId;
+    protected array $requestParams;
 
-    public function __construct(int $iproPropertyId)
+    public function __construct(int $iproPropertyId, array $requestParams = [])
     {
         $this->iproPropertyId = $iproPropertyId;
+        $this->requestParams  = $requestParams;
     }
 
     public function handle()
     {
-        $response = IproSoftwareFacade::getPropertyAll($this->iproPropertyId)->onlySuccessful();
+        $response = IproSoftwareFacade::getPropertyAll($this->iproPropertyId, [
+            'query' => $this->requestParams,
+        ])->onlySuccessful();
 
         $item = $response->json();
         self::createOrUpdateProperty($item);

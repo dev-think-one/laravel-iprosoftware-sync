@@ -46,7 +46,7 @@ class AvailabilityPull implements ShouldQueue
         $response = IproSoftwareFacade::getPropertyDayAvailability(
             $this->propertyId,
             [
-                'query' => $this->availabilityRequestParams,
+                'query' => $this->dayAvailabilityRequestParams,
             ]
         )->onlySuccessful();
 

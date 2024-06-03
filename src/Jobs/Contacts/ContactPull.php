@@ -15,16 +15,20 @@ class ContactPull implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected int $iproContactId;
+    protected array $requestParams;
 
-    public function __construct(int $iproContactId)
+    public function __construct(int $iproContactId, array $requestParams = [])
     {
         $this->iproContactId = $iproContactId;
+        $this->requestParams = $requestParams;
     }
 
 
     public function handle()
     {
-        $response = IproSoftwareFacade::getContact($this->iproContactId)->onlySuccessful();
+        $response = IproSoftwareFacade::getContact($this->iproContactId, [
+            'query' => $this->requestParams,
+        ])->onlySuccessful();
 
         $item = $response->json();
         self::createOrUpdateContact($item);

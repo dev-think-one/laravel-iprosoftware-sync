@@ -4,15 +4,19 @@ namespace IproSync\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use IproSync\Console\Commands\Traits\HasRequestParams;
 use IproSync\Jobs\Bookings\BlockoutsPull;
 use IproSync\Models\Property;
 
 class BlockoutsPullCommand extends Command
 {
+    use HasRequestParams;
+
     protected $signature = 'iprosoftware-sync:blockouts:pull
      {--property_id= : Pull blockouts by ipro property id.}
      {--from= : Date from, format Y-m-d}
      {--to= : Date to, format Y-m-d}
+     {--request_params= : Send query params (url encoded).}
      {--queue= : Queue to dispatch job.}
     ';
 
@@ -28,13 +32,19 @@ class BlockoutsPullCommand extends Command
                 $this->option('property_id'),
                 $from,
                 $to,
+                $this->getRequestParams(),
             )->onQueue($this->option('queue'));
         } else {
             Property::query()
                     ->chunk(100, function ($properties) use ($from, $to) {
                         /** @var Property $property */
                         foreach ($properties as $property) {
-                            BlockoutsPull::dispatch($property->getKey(), $from, $to)
+                            BlockoutsPull::dispatch(
+                                $property->getKey(),
+                                $from,
+                                $to,
+                                $this->getRequestParams()
+                            )
                                 ->onQueue($this->option('queue'));
                         }
                     });

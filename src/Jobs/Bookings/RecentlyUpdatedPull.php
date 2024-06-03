@@ -9,6 +9,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use LaravelIproSoftwareApi\IproSoftwareFacade;
 
+/**
+ * @deprecated
+ */
 class RecentlyUpdatedPull implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;

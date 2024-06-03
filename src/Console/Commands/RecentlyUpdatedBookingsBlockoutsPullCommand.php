@@ -5,6 +5,9 @@ namespace IproSync\Console\Commands;
 use Illuminate\Console\Command;
 use IproSync\Jobs\Bookings\RecentlyUpdatedPull;
 
+/**
+ * @deprecated
+ */
 class RecentlyUpdatedBookingsBlockoutsPullCommand extends Command
 {
     protected $signature = 'iprosoftware-sync:recently-updated-bookings-blockouts:pull
